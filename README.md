@@ -24,11 +24,11 @@ Components or Buildings are treated the same way, no difference is made
 
 Product( *name*, *units_per_cycle* , *cycle_time* , [ *requirement_name* = *number_required*, [...] ] )
 
-*name* : <str> name of the product
-*units_per_cycle* : <int> number of units produced per cycle
-*cycle_time* : <float> time spent for the cycle to complete
-*requirement_name* : <str> name of the needed component/building
-*number_required* : <int> number of units needed
+- *name* : <str> name of the product
+- *units_per_cycle* : <int> number of units produced per cycle
+- *cycle_time* : <float> time spent for the cycle to complete
+- *requirement_name* : <str> name of the needed component/building
+- *number_required* : <int> number of units needed
 
 ex :
 
