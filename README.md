@@ -56,24 +56,28 @@ you can change the targeted production/sec of an existing node :
 
 ### b. displaying production chain :
 To display the full chain :
-    >>> coil.print()
-    < Magnetic_Coil @ 2.00/sec (x1.00) >
-        < Magnetic_Ring @ 2.00/sec (x3.00) >
-            < Iron_Ore @ 2.00/sec (x2.00) >
-        < Copper_Ingot @ 1.00/sec (x1.00) >
-            < Copper_Ore @ 1.00/sec (x1.00) >
+```
+>>> coil.print()
+< Magnetic_Coil @ 2.00/sec (x1.00) >
+    < Magnetic_Ring @ 2.00/sec (x3.00) >
+        < Iron_Ore @ 2.00/sec (x2.00) >
+    < Copper_Ingot @ 1.00/sec (x1.00) >
+        < Copper_Ore @ 1.00/sec (x1.00) >
+```
 
 To display only the first level of the chain :
-    >>> coil.print(depth=1)
-    < Magnetic_Coil @ 2.00/sec (x1.00) >
-        < Magnetic_Ring @ 2.00/sec (x3.00) >
-        < Copper_Ingot @ 1.00/sec (x1.00) >
+```
+>>> coil.print(depth=1)
+< Magnetic_Coil @ 2.00/sec (x1.00) >
+    < Magnetic_Ring @ 2.00/sec (x3.00) >
+    < Copper_Ingot @ 1.00/sec (x1.00) >
+```
 
 the output should be self explanatory, but let's explain it.
 In the previous example, let's take this line of the output :
-`< Magnetic_Coil @ 2.00/sec (x1.00) >`
+    < Magnetic_Coil @ 2.00/sec (x1.00) >
 and now translate it :
-`< product_name @(at) production/sec ( required number of factories to achieve prod/sec ) >`
+    < product_name @(at) production/sec ( required number of factories to achieve prod/sec ) >
 
 ### c. obtaining total factories needed
 Totals are the sum of factories needed in a chain, regrouped by item.
