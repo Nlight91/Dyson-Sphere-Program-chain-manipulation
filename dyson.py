@@ -137,7 +137,7 @@
             first, let's create some chains :
             >>> board = Node("Circuit_Board", 6)
             >>> tesla = Node("Tesla_Tower", 6)
-            >>> belts = Node("Conveyor_Belt_MKI", 6)
+            >>> belts = Node("Conveyor_Belt_MK1", 6)
 
             Now, method #1 to combine totals :
             >>> combined_total = tesla.total() + boards.total() + belts.total()
@@ -167,13 +167,14 @@
         >>> items = all_products()
         >>> copper = which_uses("Copper_Ore", indirectly=True)
         >>> items - copper
-        {'Titanium_Alloy', 'Hydrogen', 'Organic_Crystal', 'Conveyor_Belt_MKI', ... }
+        {'Titanium_Alloy', 'Hydrogen', 'Organic_Crystal', 'Conveyor_Belt_MK1', ... }
 """
 import re
 
 db = {}
 
 def _which_uses(key, indirectly=False):
+    key = format_name(key)
     if not indirectly :
         for product in db.values():
             if key in product :
@@ -462,26 +463,26 @@ Product("Accumulator_Full",1,1)
 Product("Ray_Receiver",1,8, Steel=20, High_Purity_Silicon=20, Photon_Combiner=10, Processor=5, Super_Magnetic_Ring=20)
 Product("Mini_Fusion_Power_Station",1,10, Titanium_Alloy=12, Super_Magnetic_Ring=10, Carbon_Nanotube=8, Processor=4)
 Product("Energy_Exchanger", 1,15, Titanium_Alloy=40, Steel=40, Processor=40, Particle_Container=8)
-Product("Conveyor_Belt_MKI", 3,1, Iron_Ingot=2, Gear=1)
-Product("Conveyor_Belt_MKII",3,1, Conveyor_Belt_MKI=3, Electromagnetic_Turbine=1)
-Product("Conveyor_Belt_MKIII", 3,1, Conveyor_Belt_MKII=3, Super_Magnetic_Ring=1, Graphene=1)
+Product("Conveyor_Belt_MK1", 3,1, Iron_Ingot=2, Gear=1)
+Product("Conveyor_Belt_MK2",3,1, Conveyor_Belt_MK1=3, Electromagnetic_Turbine=1)
+Product("Conveyor_Belt_MK3", 3,1, Conveyor_Belt_MK2=3, Super_Magnetic_Ring=1, Graphene=1)
 Product("Splitter", 1,2, Iron_Ingot=3, Gear=2, Circuit_Board=1)
-Product("Storage_MKI", 1,2, Iron_Ingot=4, Stone_Brick=4)
-Product("Storage_MKII", 1,4, Steel=8, Stone_Brick=8)
+Product("Storage_MK1", 1,2, Iron_Ingot=4, Stone_Brick=4)
+Product("Storage_MK2", 1,4, Steel=8, Stone_Brick=8)
 Product("Storage_Tank", 1,2, Iron_Ingot=8, Stone_Brick=4, High_Purity_Silicon=4)
 Product("EM_Rail_Ejector", 1,6, Steel=20, Gear=20, Processor=5, Super_Magnetic_Ring=10)
 Product("Planetary_Logistics_Station", 1,20, Steel=40, Titanium_Ingot=40, Processor=40, Particle_Container=20)
 Product("Miniature_Particle_Collider", 1,15, Titanium_Alloy=20, Frame_Material=20, Super_Magnetic_Ring=50, Graphene=10, Processor=8)
-Product("Sorter_MKI", 1,1, Iron_Ingot=1, Circuit_Board=1)
-Product("Sorter_MKII", 2,1, Sorter_MKI=2, Electric_Motor=1)
-Product("Sorter_MKIII", 2,1, Sorter_MKII=2, Electromagnetic_Turbine=1)
+Product("Sorter_MK1", 1,1, Iron_Ingot=1, Circuit_Board=1)
+Product("Sorter_MK2", 2,1, Sorter_MK1=2, Electric_Motor=1)
+Product("Sorter_MK3", 2,1, Sorter_MK2=2, Electromagnetic_Turbine=1)
 Product("Mining_Machine", 1,3, Iron_Ingot=4, Circuit_Board=2, Magnetic_Coil=2, Gear=2)
 Product("Water_Pump", 1,4, Iron_Ingot=8, Stone_Brick=4, Electric_Motor=4, Circuit_Board=2)
 Product("Oil_Extractor", 1,8, Steel=12, Stone_Brick=12, Circuit_Board=6, Plasma_Exciter=4)
 Product("Oil_Refinery", 1,6, Steel=10, Stone_Brick=10, Circuit_Board=6, Plasma_Exciter=6)
 Product("Interstellar_Logistics_Station", 1,30, Planetary_Logistics_Station=1, Titanium_Alloy=40, Particle_Container=20)
-Product("Assembling_Machine_MKI", 1,2, Iron_Ingot=4, Gear=8, Circuit_Board=4)
-Product("Assembling_Machine_MKII", 1,3, Assembling_Machine_MKI=1, Graphene=8, Processor=4)
+Product("Assembling_Machine_MK1", 1,2, Iron_Ingot=4, Gear=8, Circuit_Board=4)
+Product("Assembling_Machine_MK2", 1,3, Assembling_Machine_MK1=1, Graphene=8, Processor=4)
 Product("Smeleter", 1,3, Iron_Ingot=4, Stone_Brick=2, Circuit_Board=4, Magnetic_Coil=2)
 Product("Fractionator", 1,3, Steel=8, Stone_Brick=4, Glass=4, Processor=1)
 Product("Chemical_Plant", 1,5, Steel=8, Stone_Brick=8, Glass=8, Circuit_Board=2)
