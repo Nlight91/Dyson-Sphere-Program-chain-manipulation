@@ -317,11 +317,11 @@ class Total:
         s.data = kargs
 
     def __getitem__(s,key):
-        key = format_name[key]
+        key = format_name(key)
         return s.data[key]
 
     def __setitem__(s, key, value):
-        key = format_name[key]
+        key = format_name(key)
         assert type(value) is Node
         s.data[key] = value
 
