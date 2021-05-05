@@ -36,8 +36,10 @@ ex :
     >>> Product("Iron_Ingot", 1, 1, Iron_Ore=1)
     >>> Product("Magnetic_Coil", 2, 1, Magnetic_Ring = 2, Copper_Ingot = 1)
 
-If you want to add a product, you add these commands at the bottom of this script rather than the
-console, otherwise your additions will be forgoten when you close the console
+###### Notes :
+- If you want to add a product to the "database", you have to add these commands at the bottom of this script rather than the
+console, otherwise your additions will be forgotten when you close the console
+- the name you type is automatically formated, so for example if you type `Product("iron ore", 1, 1)`, the name will discreetly become `"Iron_Ore"`
 
 ## II. Nodes :
 ### a. Creating a chain :
