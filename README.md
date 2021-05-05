@@ -31,6 +31,7 @@ Product( *name*, *units_per_cycle* , *cycle_time* , [ *requirement_name* = *numb
 *number_required* : <int> number of units needed
 
 ex :
+
     >>> Product("Iron_Ore", 1, 1)
     >>> Product("Iron_Ingot", 1, 1, Iron_Ore=1)
     >>> Product("Magnetic_Coil", 2, 1, Magnetic_Ring = 2, Copper_Ingot = 1)
