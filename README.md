@@ -87,10 +87,14 @@ Iron_Ingots together, same for each product.
 
 Total are obtained from created chains, like the previously created coil.
 you can get the total from a full chain like this :
-    >>> coil_total = coil.total()
+```
+>>> coil_total = coil.total()
+```
 
 or you can get total from a partial chain, like this:
-    >>> coil_total = coil.total(depth=1)
+```
+>>> coil_total = coil.total(depth=1)
+```
 
 while production chains are Node Objects, totals are different objects, in the previous
 usage example, coil_total is a Total object.
@@ -107,41 +111,51 @@ usage example, coil_total is a Total object.
 totals can be organized by different criterias:
 - by name (default)
 - by production/sec
-    >>> coil_total.print(sort_key=sort_key_pps)
-    Copper_Ingot  x 1.0 : 1.0/sec
-    Copper_Ore  x 1.0 : 1.0/sec
-    Magnetic_Coil  x 1.0 : 2.0/sec
-    Magnetic_Ring  x 3.0 : 2.0/sec
-    Iron_Ore  x 2.0 : 2.0/sec
+```
+>>> coil_total.print(sort_key=sort_key_pps)
+Copper_Ingot  x 1.0 : 1.0/sec
+Copper_Ore  x 1.0 : 1.0/sec
+Magnetic_Coil  x 1.0 : 2.0/sec
+Magnetic_Ring  x 3.0 : 2.0/sec
+Iron_Ore  x 2.0 : 2.0/sec
+```
 - by number of factories
-    >>> coil_total.print(sort_key=sort_key_factory)
-    Magnetic_Coil  x 1.0 : 2.0/sec
-    Copper_Ingot  x 1.0 : 1.0/sec
-    Copper_Ore  x 1.0 : 1.0/sec
-    Iron_Ore  x 2.0 : 2.0/sec
-    Magnetic_Ring  x 3.0 : 2.0/sec
+```
+>>> coil_total.print(sort_key=sort_key_factory)
+Magnetic_Coil  x 1.0 : 2.0/sec
+Copper_Ingot  x 1.0 : 1.0/sec
+Copper_Ore  x 1.0 : 1.0/sec
+Iron_Ore  x 2.0 : 2.0/sec
+Magnetic_Ring  x 3.0 : 2.0/sec
+```
 
 by default the order is ascending, but it can be descending :
+
     >>> coil_total.print( descending = True )
     >>> coil_total.print( sort_key = sort_key_factory, descending = True)
 
 ### b. combining totals :
 Total objects can be combined together. The result can be achieve in several ways
 first, let's create some chains :
+
     >>> board = Node("Circuit_Board", 6)
     >>> tesla = Node("Tesla_Tower", 6)
     >>> belts = Node("Conveyor_Belt_MKI", 6)
 
 Now, method #1 to combine totals :
+
     >>> combined_total = tesla.total() + boards.total() + belts.total()
 
 method #2
+
     >>> combined_total = tesla.total().sum_with(boards.total(), belts.total())
 
 method #3
+
     >>> combined_total = Total.sum_nodes([tesla, boards, belts])
 
 for method #3, if you want to combine partial chains :
+
     >>> combined_total = Total.sum_nodes( [tesla, boards, belts], depths=[1,2,1] )
 
 
