@@ -182,3 +182,7 @@ what you can produce without copper
     >>> copper = which_uses("Copper_Ore", indirectly=True)
     >>> items - copper
     {'Titanium_Alloy', 'Hydrogen', 'Organic_Crystal', 'Conveyor_Belt_MKI', ... }
+
+# Tasks
+- [x] fixed bug preventing Node.total() from working (typo in format_name call)
+- [ ] creating last missing components/building
