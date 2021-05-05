@@ -161,15 +161,18 @@ for method #3, if you want to combine partial chains :
 
 ## IV. Getting all products name requiring a specific product
 You can either obtaining a <set> of product name requiring DIRECTLY a specific item
+
     >>> which_uses("Silicon_Ore")
     {'High_Purity_Silicon'}
 
 Or obtaining thos that require INDIRECTLY a specific item, meaning needing it somewhere down its chain:
+
     >>> which_uses("Silicon_Ore", indirectly=True)
     {'Satellite_Substation', 'Fractionator', ... }
 
 Here is an example use case : you discover a planet with every resources but copper, and you want to know
 what you can produce without copper
+
     >>> items = all_products()
     >>> copper = which_uses("Copper_Ore", indirectly=True)
     >>> items - copper
