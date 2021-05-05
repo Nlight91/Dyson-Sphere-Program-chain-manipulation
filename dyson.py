@@ -371,7 +371,7 @@ class Total:
         return dic.sum_with(*totals)
 
     def  print(s, sort_key = None, descending=False):
-        for name, node in sorted(s.items(), key=sort_key) :
+        for name, node in sorted(s.items(), key=sort_key, reverse=descending) :
             print(f"{name}  x {node.factory_number} : {node.pps}/sec")
 
 def sort_key_name(item):
