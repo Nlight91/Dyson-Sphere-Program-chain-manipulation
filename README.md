@@ -41,10 +41,10 @@ console, otherwise your additions will be forgoten when you close the console
 
 ## II. Nodes :
 ### a. Creating a chain :
-Node( name , [ production_per_second ] )
+Node( *name* , [ *production_per_second* ] )
 
-name : <str> name of the product
-production_per_second : production/sec to achieve
+- *name* : <str> name of the product
+- *production_per_second* : production/sec to achieve
 
 NOTE : parameter name must be a product name that has already been created (see chapter I.)
 
