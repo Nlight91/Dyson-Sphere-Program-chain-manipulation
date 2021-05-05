@@ -1,5 +1,5 @@
 # Author : Nicolas DAVID
-# Version : 0.1
+# Version : 0.2
 # Contributors : Nicolas DAVID
 #
 """
