@@ -53,6 +53,7 @@ NOTE : parameter name must be a product name that has already been created (see 
     >>> coil = Node("Magnetic_Coil", 6)
 
 you can change the targeted production/sec of an existing node :
+
     >>> coil.set_pps(2)
 
 ### b. displaying production chain :
@@ -76,8 +77,11 @@ To display only the first level of the chain :
 
 the output should be self explanatory, but let's explain it.
 In the previous example, let's take this line of the output :
+
     < Magnetic_Coil @ 2.00/sec (x1.00) >
+
 and now translate it :
+
     < product_name @(at) production/sec ( required number of factories to achieve prod/sec ) >
 
 ### c. obtaining total factories needed
