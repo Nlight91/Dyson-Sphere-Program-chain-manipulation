@@ -483,7 +483,7 @@ Product("Oil_Refinery", 1,6, Steel=10, Stone_Brick=10, Circuit_Board=6, Plasma_E
 Product("Interstellar_Logistics_Station", 1,30, Planetary_Logistics_Station=1, Titanium_Alloy=40, Particle_Container=20)
 Product("Assembling_Machine_MK1", 1,2, Iron_Ingot=4, Gear=8, Circuit_Board=4)
 Product("Assembling_Machine_MK2", 1,3, Assembling_Machine_MK1=1, Graphene=8, Processor=4)
-Product("Smeleter", 1,3, Iron_Ingot=4, Stone_Brick=2, Circuit_Board=4, Magnetic_Coil=2)
+Product("Smelter", 1,3, Iron_Ingot=4, Stone_Brick=2, Circuit_Board=4, Magnetic_Coil=2)
 Product("Fractionator", 1,3, Steel=8, Stone_Brick=4, Glass=4, Processor=1)
 Product("Chemical_Plant", 1,5, Steel=8, Stone_Brick=8, Glass=8, Circuit_Board=2)
 Product("Matrix_Lab", 1,3, Iron_Ingot=8, Glass=4, Circuit_Board=4, Magnetic_Coil=4)
