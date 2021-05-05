@@ -242,23 +242,22 @@ class Node:
     def base_pps(s):
         return s.base_product.pps
 
-    def __init__(s, name, tgt_pps=None, parent=None):
+    def __init__(s, name, tgt_pps=None):
         name = format_name(name)
         product = db[name]
         tgt_pps = product.pps if tgt_pps is None else tgt_pps
         s.name = name
-        s.parent = parent
         s.base_product = product
         s.factory_number = product.objective(tgt_pps)
         s.adjusted_product = product * s.factory_number
         s.children = []
         for key,tgt_pps in s.adjusted_product :
-            s.children.append(Node(key, tgt_pps, parent=s))
+            s.children.append(Node(key, tgt_pps))
 
     def set_pps(s, tgt=None):
         if tgt is None:
             tgt = s.base_product.pps
-        s.__init__(s.name, tgt_pps = tgt, parent = s.parent)
+        s.__init__(s.name, tgt_pps = tgt)
 
     def chain(s, depth=None, lvl=0, summarized=False):
         tabs = lambda x : " "*4*x
