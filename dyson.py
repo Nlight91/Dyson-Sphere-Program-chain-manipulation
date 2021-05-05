@@ -169,6 +169,8 @@
         >>> items - copper
         {'Titanium_Alloy', 'Hydrogen', 'Organic_Crystal', 'Conveyor_Belt_MKI', ... }
 """
+import re
+
 db = {}
 
 def _which_uses(key, indirectly=False):
@@ -188,9 +190,14 @@ def which_uses(key, indirectly=False):
 def all_products():
     return set(db.keys())
 
+def format_name(string):
+    words = re.findall("[a-zA-Z0-9]+", string)
+    return "_".join(w.capitalize() for w in words)
+
 
 class Product:
     def __init__(s, name, units, time, **reqs):
+        name = format_name(name)
         s.name = name
         s.units = units
         s.time = time
@@ -202,6 +209,7 @@ class Product:
 
     def add_reqs(s, reqs):
         for key,val in reqs.items():
+            key = format_name(key)
             s.reqs[key] = val/s.time
             if key not in db:
                 print(f'"{key}" not in database')
@@ -221,6 +229,7 @@ class Product:
         return Product(s.name, s.pps*scalar, 1, **{key:val*scalar for key,val in s})
 
     def __contains__(s, key):
+        key = format_name(key)
         return key in s.reqs
 
 
@@ -233,6 +242,7 @@ class Node:
         return s.base_product.pps
 
     def __init__(s, name, tgt_pps=None, parent=None):
+        name = format_name(name)
         product = db[name]
         tgt_pps = product.pps if tgt_pps is None else tgt_pps
         s.name = name
@@ -307,9 +317,11 @@ class Total:
         s.data = kargs
 
     def __getitem__(s,key):
+        key = format_name[key]
         return s.data[key]
 
     def __setitem__(s, key, value):
+        key = format_name[key]
         assert type(value) is Node
         s.data[key] = value
 
