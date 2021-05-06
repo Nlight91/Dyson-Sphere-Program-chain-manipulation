@@ -187,4 +187,4 @@ what you can produce without copper
 
 # Tasks
 - [x] fixed bug preventing Node.total() from working (typo in format_name call)
-- [ ] creating last missing components/building
+- [x] creating last missing components/building
