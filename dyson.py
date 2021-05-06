@@ -1,7 +1,9 @@
 # Author : Nicolas DAVID
 # Version : 0.2
 # Contributors : Nicolas DAVID
-#
+# license : GNU GPL 3.0
+# license linkk : https://www.gnu.org/licenses/gpl-3.0
+# project address and manual : https://github.com/Nlight91/Dyson-Sphere-Program-chain-manipulation
 import re
 
 db = {}
