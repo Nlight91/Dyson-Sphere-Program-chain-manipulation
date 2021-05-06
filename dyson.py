@@ -1,5 +1,5 @@
 # Author : Nicolas DAVID
-# Version : 0.2
+# Version : 0.3
 # Contributors : Nicolas DAVID
 # license : GNU GPL 3.0
 # license linkk : https://www.gnu.org/licenses/gpl-3.0
