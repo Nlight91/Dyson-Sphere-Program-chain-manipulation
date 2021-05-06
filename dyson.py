@@ -40,20 +40,20 @@
         If you want to add a product, you add these commands at the bottom of this script rather than the
         console, otherwise your additions will be forgoten when you close the console
 
-    II. Nodes :
+    II. Chains :
     -----------
         a. Creating a chain :
         ~~~~~~~~~~~~~~~~~~~~~
-            Node( name , [ production_per_second ] )
+            Chain( name , [ production_per_second ] )
 
             name : <str> name of the product
             production_per_second : production/sec to achieve
 
             NOTE : parameter name must be a product name that has already been created (see chapter I.)
 
-            >>> coil = Node("Magnetic_Coil")
+            >>> coil = Chain("Magnetic_Coil")
             when production/sec is not given, default product production/sec is used
-            >>> coil = Node("Magnetic_Coil", 6)
+            >>> coil = Chain("Magnetic_Coil", 6)
 
             you can change the targeted production/sec of an existing node :
             >>> coil.set_pps(2)
@@ -94,7 +94,7 @@
             or you can get total from a partial chain, like this:
             >>> coil_total = coil.total(depth=1)
 
-            while production chains are Node Objects, totals are different objects, in the previous
+            while production chains are Chain Objects, totals are different objects, in the previous
             usage example, coil_total is a Total object.
 
     III. Totals :
@@ -135,9 +135,9 @@
         ~~~~~~~~~~~~~~~~~~~~~
             Total objects can be combined together. The result can be achieve in several ways
             first, let's create some chains :
-            >>> board = Node("Circuit_Board", 6)
-            >>> tesla = Node("Tesla_Tower", 6)
-            >>> belts = Node("Conveyor_Belt_MK1", 6)
+            >>> board = Chain("Circuit_Board", 6)
+            >>> tesla = Chain("Tesla_Tower", 6)
+            >>> belts = Chain("Conveyor_Belt_MK1", 6)
 
             Now, method #1 to combine totals :
             >>> combined_total = tesla.total() + boards.total() + belts.total()
@@ -181,7 +181,7 @@ def _which_uses(key, indirectly=False):
                 yield product.name
     elif indirectly :
         for name in db:
-            tree = Node(name)
+            tree = Chain(name)
             if key in tree.total() :
                 yield name
 
@@ -234,7 +234,7 @@ class Product:
         return key in s.reqs
 
 
-class Node:
+class Chain:
     @property
     def pps(s):
         return s.adjusted_product.pps
@@ -252,7 +252,7 @@ class Node:
         s.adjusted_product = product * s.factory_number
         s.children = []
         for key,tgt_pps in s.adjusted_product :
-            s.children.append(Node(key, tgt_pps))
+            s.children.append(Chain(key, tgt_pps))
 
     def set_pps(s, tgt=None):
         if tgt is None:
@@ -289,9 +289,9 @@ class Node:
             yield child
 
     def __add__(s, o):
-        assert type(o) is Node
+        assert type(o) is Chain
         assert o.name == s.name
-        return Node(s.name, s.adjusted_product.pps + o.adjusted_product.pps)
+        return Chain(s.name, s.adjusted_product.pps + o.adjusted_product.pps)
 
     def __repr__(s):
         return f"< {s.name} @ {s.adjusted_product.pps:.2f}/sec (x{s.factory_number:.2f}) >"
@@ -322,7 +322,7 @@ class Total:
 
     def __setitem__(s, key, value):
         key = format_name(key)
-        assert type(value) is Node
+        assert type(value) is Chain
         s.data[key] = value
 
     def __contains__(s, key):
@@ -360,7 +360,7 @@ class Total:
 
     @classmethod
     def sum_nodes(cls, nodes, depths=None):
-        assert all([type(n) is Node for n in nodes])
+        assert all([type(n) is Chain for n in nodes])
         if depths is None :
             totals = [node.total() for node in nodes]
         else :
@@ -384,14 +384,14 @@ def sort_key_factory(item):
 
 # ==== COMPONENTS ====
 
-Product("Coal",1,1)
-Product("Copper_Ore", 1,1)
-Product("Crude_Oil",1,1)
-Product("Iron_Ore", 1, 1)
-Product("Stone",1,1)
+Product("Coal",3,1)
+Product("Copper_Ore", 3,1)
+Product("Crude_Oil",3,1)
+Product("Iron_Ore", 3, 1)
+Product("Stone",3,1)
 Product("Silicon_Ore", 1, 10, Stone=10)
-Product("Titanium_Ore",1,1)
-Product("Water",1,1)
+Product("Titanium_Ore",3,1)
+Product("Water",3,1)
 Product("Copper_Ingot", 1, 1, Copper_Ore = 1)
 Product("Magnetic_Ring", 1, 1.5, Iron_Ore = 1)
 Product("Magnetic_Coil", 2, 1, Magnetic_Ring = 2, Copper_Ingot = 1)
@@ -450,6 +450,7 @@ Product("Quantum_Chip", 1,6, Processor=2, Plane_Filter=2)
 Product("Green_Matrix", 2,24, Graviton_Lens=1, Quantum_Chip=1)
 Product("Deuteron_Fuel_Rod", 1, 6, Titanium_Alloy=1, Deuterium=10, Super_Magnetic_Ring=1)
 Product("Small_Carrier_Rocket", 1,6, Dyson_Sphere_Component=2, Deuteron_Fuel_Rod=2, Quantum_Chip=2)
+Product("Photon", 1, 1)
 Product("Antimatter", 2, 2, Photon=2)
 Product("Annihilation_Constraint_Sphere", 1,20, Particle_Container=1, Processor=1)
 Product("Antimatter_Fuel_Rod", 1, 12, Antimatter=10, Hydrogen=10, Annihilation_Constraint_Sphere=1, Titanium_Alloy=1)
