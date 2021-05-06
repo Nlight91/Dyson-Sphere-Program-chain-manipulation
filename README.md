@@ -107,7 +107,7 @@ while production chains are Node Objects, totals are different objects, in the p
 usage example, coil_total is a Total object.
 
 ## III. Totals :
-### a. dislaying totals :
+### a. displaying totals :
     >>> coil_total.print()
     Copper_Ingot  x 1.0 : 1.0/sec
     Copper_Ore  x 1.0 : 1.0/sec
