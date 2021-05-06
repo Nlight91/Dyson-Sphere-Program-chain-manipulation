@@ -41,18 +41,18 @@ ex :
 console, otherwise your additions will be forgotten when you close the console
 - the name you type is automatically formated, so for example if you type `Product("iron ore", 1, 1)`, the name will discreetly become `"Iron_Ore"`
 
-## II. Nodes :
+## II. Chains :
 ### a. Creating a chain :
-Node( *name* , [ *production_per_second* ] )
+Chain( *name* , [ *production_per_second* ] )
 
 - *name* : <str> name of the product
 - *production_per_second* : production/sec to achieve
 
 NOTE : parameter name must be a product name that has already been created (see chapter I.)
 
-    >>> coil = Node("Magnetic_Coil")
+    >>> coil = Chain("Magnetic_Coil")
     when production/sec is not given, default product production/sec is used
-    >>> coil = Node("Magnetic_Coil", 6)
+    >>> coil = Chain("Magnetic_Coil", 6)
 
 you can change the targeted production/sec of an existing node :
 
@@ -103,7 +103,7 @@ or you can get total from a partial chain, like this:
 >>> coil_total = coil.total(depth=1)
 ```
 
-while production chains are Node Objects, totals are different objects, in the previous
+while production chains are Chain Objects, totals are different objects, in the previous
 usage example, coil_total is a Total object.
 
 ## III. Totals :
@@ -145,9 +145,9 @@ by default the order is ascending, but it can be descending :
 Total objects can be combined together. The result can be achieve in several ways
 first, let's create some chains :
 
-    >>> board = Node("Circuit_Board", 6)
-    >>> tesla = Node("Tesla_Tower", 6)
-    >>> belts = Node("Conveyor_Belt_MKI", 6)
+    >>> board = Chain("Circuit_Board", 6)
+    >>> tesla = Chain("Tesla_Tower", 6)
+    >>> belts = Chain("Conveyor_Belt_MKI", 6)
 
 Now, method #1 to combine totals :
 
@@ -186,5 +186,5 @@ what you can produce without copper
     {'Titanium_Alloy', 'Hydrogen', 'Organic_Crystal', 'Conveyor_Belt_MKI', ... }
 
 # Tasks
-- [x] fixed bug preventing Node.total() from working (typo in format_name call)
+- [x] fixed bug preventing Chain.total() from working (typo in format_name call)
 - [x] creating last missing components/building
